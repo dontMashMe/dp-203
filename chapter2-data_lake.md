@@ -1,14 +1,14 @@
 [Go back](README.md)
 
 # Introduction to Azure Data Lake Storage
-Data lakehouses provide a solution to a problem of many data warehouses and BI solutions: ability to store unstrutured data.
+Data lakehouses provide a solution to a problem of many data warehouses and BI solutions: ability to store unstructured data.
 
 A data lake provides file-based storage, usually in a distributed file system that supports high scalability for massive volumes of data. Org's can store structured, semi-structured and unstructured data in the data lake, and then consume them from there using big data processing technologies (Spark)
 
 ## Understand Azure Data Lake Storage
 Data lake is a repository of data stored in its natural form, usually blob or files.
 
-ADLS combines a file system with a storage platform which helps with quickly identifying insigiths into the data.
+ADLS combines a file system with a storage platform which helps with quickly identifying insights into the data.
 
 ## Benefits
 Remember the **3 V's of Big data**: 
@@ -73,7 +73,7 @@ There are four stages for processing big data solutions:
     * Common technologies are Synapse, Databricks, HDInsight, Azure ML
 * **Model and serve**
     * Identifies technologies that will present the data to users.
-    * Vizualization tools such as Micorosft Power BI (although often it is a combination of multiple)
+    * Visualization tools such as Microsoft Power BI (although often it is a combination of multiple)
 
 ## Use ADLS in data analytics workloads
 ADLS can be characterized as an ENABLING technology for multiple data analytics use cases.
@@ -91,7 +91,7 @@ Typical scenario:
     * This often includes staging data in data lake in order to facilitate distributed processing 
         * Remember how Montepio had three "layers" in data lake: **Raw**, **Processed**, **Enriched**
 * Data is then treated via ETL processes using ADF, hosted on Synapse
-* Data is then loaded into a relational data warehouse in an Azure Synapse SQL pool, from where it can support data vizualization and reporting using Power BI
+* Data is then loaded into a relational data warehouse in an Azure Synapse SQL pool, from where it can support data visualization and reporting using Power BI
 
 ![alt text](data-warehouse-1.png)
 

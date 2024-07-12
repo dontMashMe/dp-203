@@ -25,12 +25,12 @@ Combines a centralized service for data storage and processing with an extensibl
 Most of this chapter is just brief descriptions on what you can do with data, pipelines etc. 
 
 ### Ingesting and transforming data with pipelines
-In most enterprise data analytics solutions, data is extracted from multiple operational sources and trasnferred to a central data lake or data warehouse for analysis.
+In most enterprise data analytics solutions, data is extracted from multiple operational sources and transferred to a central data lake or data warehouse for analysis.
 
 Synapse includes build-in support for creating, running and managing *pipelines* that orchestrate the activities necessary to **retrieve data** from a range of sources, **transform the data** as required, and **load** the resulting transformed data into an analytical store *(so, basically, ETL (or ELT if you're hip and up-to-date))*
 
 ### Querying and manipulating data with SQL
-SQL is a ubiquitouis(??) language for querying and manipulating data, and is the foundation for relational databases, including MSSQL. Synapse supports SQL-based data querying and manipulation through two kinds of SQL *pool* thaat are based on the SQL Server relational database engine: 
+SQL is an ubiquitous language for querying and manipulating data, and is the foundation for relational databases, including MSSQL. Synapse supports SQL-based data querying and manipulation through two kinds of SQL *pool* that are based on the SQL Server relational database engine: 
 * A built-in *serverless* pool that is optimized for using relational SQL semantics to query **file-based data** in a data lake
 * Custom *dedicated* SQL pools that host **relational data** warehouses. 
 
@@ -65,7 +65,7 @@ Common use cases for Synapse are identified by the need for:
 * Large-scale data warehousing:
     * Data warehousing includes the need to integrate all data, including big data, to reason over data for analytics and reporting purposes from a descriptive analytics perspective, independent of its location and structure.
 * Advanced analytics: 
-    * Enables predctive analysis using both the native features of Synapses, and integrating with other technologies such as Azure Machine Learning.
+    * Enables predictive analysis using both the native features of Synapses, and integrating with other technologies such as Azure Machine Learning.
 * Data exploration and discovery
     * Serverless SQL pool functionality enables DA's, DE's, DS's alike to explore the data within your data estate. 
     * This capability supports data discovery, diagnostic analytics, and exploratory data analysis. 

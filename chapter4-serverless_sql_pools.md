@@ -190,7 +190,7 @@ FROM OPENROWSET(
 ```
 
 #### Querying partitioned data
-Parquets are often partitioned by splitting across multiple files in subfolders that reflect the partitioning criteria.
+Parquets are often partitioned by splitting across multiple files in sub-folders that reflect the partitioning criteria.
 
 For example, suppose you need to efficiently process sales order data, and often need to filter based on the year and month in which orders were placed. You could partition the data using folders, like this:
 
@@ -256,7 +256,7 @@ FROM
     ) AS orders
 ```
 
-Another benefit is **assigning a credential for the data source** to use when accesing the underlying storage.
+Another benefit is **assigning a credential for the data source** to use when accessing the underlying storage.
 
 For example: 
 
@@ -277,4 +277,186 @@ GO
 
 ## Exercise - Query files using a serverless SQL pool
 
-TODO!
+Section below will contain brief explanation of the exercises, and queries used to solve them.
+
+### Query data in files
+Running the ./setup sh file will produce the following file structure in a data lake:
+
+* files
+    * csv
+        * 2019.csv
+        * 2020.csv
+        * 2021.csv
+    * json
+        * SO43700.json
+        * ...
+        * S043705.json
+    * parquet
+        * year=2019
+        * year=2020
+        * year=2021
+
+Selecting TOP 100, and adding the *HEADER_ROW = TRUE* option will throw the following error:
+
+```
+Potential conversion error while reading VARCHAR column 'SO43701' from UTF8 encoded text. ...
+```
+
+To get around it, **manually type out the header rows** in the query:
+
+```sql
+-- This is auto-generated code
+SELECT
+    TOP 100 *
+FROM
+    OPENROWSET(
+        BULK 'https://datalakexxxxxx.dfs.core.windows.net/files/sales/csv/**',
+        FORMAT = 'CSV',
+        PARSER_VERSION = '2.0'
+    ) WITH(
+    SalesOrderNumber VARCHAR(50) 1,
+    SalesOrderLineNumber INT 2,
+    OrderDate VARCHAR(50) 3,
+    CustomerName VARCHAR(50) 4,
+    EmailAddress VARCHAR(50) 5,
+    Item VARCHAR(50) 6,
+    Quantity INT 7,
+    UnitPrice FLOAT 8,
+    TaxAmount FLOAT 9
+)AS [result]
+```
+
+### Create an external data source and file format
+
+Create a data source which can be later referenced for accessing the data lake location.
+
+To use these objects to work with external tables, they need to be created in a database **OTHER THAN THE DEFAULT MASTER** database
+
+Run the following script:
+
+```sql
+ -- Database for sales data
+ CREATE DATABASE Sales
+   COLLATE Latin1_General_100_BIN2_UTF8;
+ GO;
+    
+ Use Sales;
+ GO;
+    
+ -- External data is in the Files container in the data lake
+ CREATE EXTERNAL DATA SOURCE sales_data WITH (
+     LOCATION = 'https://datalakexxxxxxx.dfs.core.windows.net/files/'
+ );
+ GO;
+    
+ -- Format for table files
+ CREATE EXTERNAL FILE FORMAT ParquetFormat
+     WITH (
+             FORMAT_TYPE = PARQUET,
+             DATA_COMPRESSION = 'org.apache.hadoop.io.compress.SnappyCodec'
+         );
+ GO;
+```
+
+This will create a new database "Sales". Navigate to Data->Workspace and it should be created.
+
+![alt text](sales_data.png)
+
+### Create an External table
+
+Once again, the **provided script breaks** since it's either missing the HEADER row, or it can't be deduced automatically. 
+
+Use the following script:
+
+```sql
+USE Sales;
+GO;
+
+SELECT 
+    Item AS Product,
+        SUM(Quantity) AS ItemsSold,
+        ROUND(SUM(UnitPrice) - SUM(TaxAmount), 2) AS NetRevenue
+FROM
+    OPENROWSET(
+        BULK 'sales/csv/*.csv',
+        DATA_SOURCE = 'sales_data',
+        FORMAT = 'CSV',
+        PARSER_VERSION = '2.0'
+    ) 
+    WITH(
+    SalesOrderNumber VARCHAR(50) 1,
+    SalesOrderLineNumber INT 2,
+    OrderDate VARCHAR(50) 3,
+    CustomerName VARCHAR(50) 4,
+    EmailAddress VARCHAR(50) 5,
+    Item VARCHAR(50) 6,
+    Quantity INT 7,
+    UnitPrice FLOAT 8,
+    TaxAmount FLOAT 9
+) AS orders
+ GROUP BY Item;
+```
+
+#### Summary
+
+This lesson teaches us how to create an external table, which can be used for example in a downstream process to load the transformed data into a data warehouse. 
+
+It starts of by creating a database `Sales` (remember, external tables can't be created on **master**) and defining an `EXTERNAL DATA SOURCE` and a `FILE FORMAT`.
+
+##### External data source
+
+Essentially a file container in the data lake (after running the initial script, you can find the newly created folder under */files/sales/productsales/*)
+
+![alt text](external_data_data_source.png)
+
+#### File format
+
+Defines in which file format will the data be saved in the defined external data source.
+
+For this example, PARQUET is used.
+
+Notice how the data is not partitioned, so there are no sub-folders, unlike in the provided */files/sales/parquet/* folder where data is partitioned by year.
+
+### Encapsulate data transformation in a stored procedure.
+
+If you will need to transform data frequently, you can use a stored procedure to encapsulate a CETAS (CREATE EXTERNAL TABLE AS SELECT) statement.
+
+Once again, the script will fail due to missing HEADER rows, so just add them as in the previous lesson. 
+
+**Change to Sales database!**
+
+## Knowledge check
+
+1. What function is used to read the data in files stored in a data lake?
+
+* FORMAT
+* ROWSET
+* OPENROWSET
+
+<details>
+<summary>Answer</summary>
+The correct answer is: <b>OPENROWSET</b>
+</details>
+
+2. What character in file path can be used to select all the file/folders that match rest of the path? 
+
+* &
+* \*
+* /
+
+<details>
+<summary>Answer</summary>
+The correct answer is: **\***
+</details>
+
+3. Which external database object encapsulates the connection information to a file location in a data lake store? 
+
+* FILE FORMAT
+* DATA SOURCE
+* EXTERNAL TABLE
+
+<details>
+<summary>Answer</summary>
+The correct answer is: **DATA SOURCE**
+</details>
+
