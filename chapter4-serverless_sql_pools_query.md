@@ -372,7 +372,14 @@ Use the following script:
 USE Sales;
 GO;
 
-SELECT 
+CREATE EXTERNAL TABLE ProductSalesTotals
+     WITH (
+         LOCATION = 'sales/productsales/',
+         DATA_SOURCE = sales_data,
+         FILE_FORMAT = ParquetFormat
+     )
+AS
+SELECT  
     Item AS Product,
         SUM(Quantity) AS ItemsSold,
         ROUND(SUM(UnitPrice) - SUM(TaxAmount), 2) AS NetRevenue
@@ -446,7 +453,7 @@ The correct answer is: <b>OPENROWSET</b>
 
 <details>
 <summary>Answer</summary>
-The correct answer is: **\***
+The correct answer is: <b>\</b>
 </details>
 
 3. Which external database object encapsulates the connection information to a file location in a data lake store? 
@@ -457,6 +464,6 @@ The correct answer is: **\***
 
 <details>
 <summary>Answer</summary>
-The correct answer is: **DATA SOURCE**
+The correct answer is: <b>DATA SOURCE</b>
 </details>
 
