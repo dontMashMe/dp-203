@@ -18,7 +18,6 @@ You can use a CREATE EXTERNAL TABLE AS SELECT (CETAS) statement in a dedicated S
 CETAS statement includes a SELECT statement that queries data from any valid data source, and it's results are persisted in an external table, which is a metadata object in a database that provides a relational abstraction over data stored in files. 
 
 ## Creating external database objects to support CETAS
-
 This was already covered in [Chapter 4 exercise](./chapter4-serverless_sql_pools_query.md#create-an-external-data-source-and-file-format)
 
 Essentially, you need to create: 
@@ -146,4 +145,52 @@ Creating a pipeline for the data transformation enables scheduling of the operat
 
 ## Exercise 
 
-TODO!
+More of the same stuff we've already seen in the [Chapter 4 exercise](./chapter4-serverless_sql_pools_query.md#create-an-external-data-source-and-file-format) (it even uses the same lab practice file set)
+
+Won't go over it again, but it covers topics such as: 
+
+* Creating an external table 
+    * external data source
+    * external file format
+
+* Encapsulating the CETAS in a stored procedure
+    * SP has some additional handlings, such as dropping the external table if it exists 
+
+## Knowledge check
+
+1. You need to store the results of a query in a serverless SQL pool as files in a data lake. Which SQL statement should you use? 
+
+* BULK INSERT 
+* CREATE EXTERNAL TABLE AS SELECT
+* COPY
+
+<details>
+<summary>Answer</summary>
+The correct answer is: <b>CREATE EXTERNAL TABLE AS SELECT</b>
+</details><br>
+
+
+2. Which of the following file formats can you use to persist the results of a query? 
+
+* CSV only
+* Parquet only
+* CSV and Parquet
+
+<details>
+<summary>Answer</summary>
+The correct answer is: <b>CSV and Parquet</b>
+</details><br>
+
+3. You drop an existing external table from a database in a serverless SQL pool. What else must you do before recreating an external table with the same location? 
+
+* Delete the folder containing the data files for dropped table.
+* Drop and recreate the database
+* Create an Apache Spark pool
+
+<details>
+<summary>Answer</summary>
+The correct answer is: <b>Delete the folder containing the data files for dropped table.</b>
+</details>
+
+## Summary
+

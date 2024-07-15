@@ -443,7 +443,7 @@ Once again, the script will fail due to missing HEADER rows, so just add them as
 <details>
 <summary>Answer</summary>
 The correct answer is: <b>OPENROWSET</b>
-</details>
+</details><br>
 
 2. What character in file path can be used to select all the file/folders that match rest of the path? 
 
@@ -454,7 +454,7 @@ The correct answer is: <b>OPENROWSET</b>
 <details>
 <summary>Answer</summary>
 The correct answer is: <b>\</b>
-</details>
+</details><br>
 
 3. Which external database object encapsulates the connection information to a file location in a data lake store? 
 
@@ -465,5 +465,5 @@ The correct answer is: <b>\</b>
 <details>
 <summary>Answer</summary>
 The correct answer is: <b>DATA SOURCE</b>
-</details>
+</details><br>
 
