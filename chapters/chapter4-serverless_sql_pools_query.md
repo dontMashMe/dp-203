@@ -1,4 +1,4 @@
-[Go back](README.md)
+[Go back](../README.md)
 
 # Use Azure Synapse serverless SQL pool to query files in a data lake
 
@@ -360,7 +360,7 @@ Run the following script:
 
 This will create a new database "Sales". Navigate to Data->Workspace and it should be created.
 
-![alt text](sales_data.png)
+![alt text](../img/sales_data.png)
 
 ### Create an External table
 
@@ -414,7 +414,7 @@ It starts of by creating a database `Sales` (remember, external tables can't be 
 
 Essentially a file container in the data lake (after running the initial script, you can find the newly created folder under */files/sales/productsales/*)
 
-![alt text](external_data_data_source.png)
+![alt text](../img/external_data_data_source.png)
 
 #### File format
 

@@ -1,4 +1,4 @@
-[Go back](README.md)
+[Go back](../README.md)
 
 # Introduction to Azure Data Lake Storage
 Data lakehouses provide a solution to a problem of many data warehouses and BI solutions: ability to store unstructured data.
@@ -47,11 +47,11 @@ Whenever planning for a data lake, a data engineer should give thoughtful consid
 Blog storage stores unstructured ("object") data in a flat namespace within a blog container. Names can contain "/" to organize blobs into virtual "folders", but the blobs are stored as single-level hierarchy in a flat namespace. 
 * Data can be accessed via **HTTP or HTTPS**
 
-![alt text](blob-store-1.png)
+![alt text](../img/blob-store-1.png)
 
 ADLS builds on top of blob storage and optimizes I/O of high-volume data by using a hierarchical namespace that organizes blob data into *directories*, and stores **metadata** about each directory and files within it.
 
-![alt text](data-lake-1.png)
+![alt text](../img/data-lake-1.png)
 
 ## Understanding the stages for processing big data
 Fundemental role in wide range of big data architectures. They can involve the creation of:
@@ -93,7 +93,7 @@ Typical scenario:
 * Data is then treated via ETL processes using ADF, hosted on Synapse
 * Data is then loaded into a relational data warehouse in an Azure Synapse SQL pool, from where it can support data visualization and reporting using Power BI
 
-![alt text](data-warehouse-1.png)
+![alt text](../img/data-warehouse-1.png)
 
 ### Real-time data analytics
 Increasingly, businesses and other orgs need to capture perpetual streams of data and analyze it in real-time (or as close as possible).

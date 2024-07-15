@@ -1,4 +1,4 @@
-[Go back](README.md)
+[Go back](../README.md)
 
 # Use Azure Synapse serverless SQL pools to transform data in a data lake
 Engineers often need to use SQL to **transform** data; often as part of a data ingestion pipeline or an ETL process.
@@ -140,7 +140,7 @@ For example, you can create a pipeline that includes the following activities:
 * A Delete activity that deletes the target folder for the transformed data in the data lake if it already exists.
 * A Stored procedure activity that connects to your serverless SQL pool and runs the stored procedure that encapsulates your CETAS operation.
 
-![alt text](stored_procedure_pipeline.png)
+![alt text](../img/stored_procedure_pipeline.png)
 
 Creating a pipeline for the data transformation enables scheduling of the operations to run at specific times (or based on specific events)
 

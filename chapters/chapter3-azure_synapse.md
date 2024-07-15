@@ -1,4 +1,4 @@
-[Go back](README.md)
+[Go back](../README.md)
 
 # Azure Synapse Analytics
 
@@ -17,7 +17,7 @@ Four common types of analytical technique that organizations commonly use:
 
 Azure Synapse Analytics is an integrated solution which answers all of these questions, providing support for **multiple data storage, processing, and analysis technologies**.
 
-![alt text](types-analytics.png)
+![alt text](../img/types-analytics.png)
 
 ## How Synapse works
 Combines a centralized service for data storage and processing with an extensible architecture through which *linked services* enable you to integrate commonly used data stores, processing platforms and visualization tools.
@@ -34,11 +34,11 @@ SQL is an ubiquitous language for querying and manipulating data, and is the fou
 * A built-in *serverless* pool that is optimized for using relational SQL semantics to query **file-based data** in a data lake
 * Custom *dedicated* SQL pools that host **relational data** warehouses. 
 
-![alt text](something_wong-1.png)
+![alt text](../img/something_wong-1.png)
 
 The Azure Synapse SQL system uses a distributed query processing model to parallelize SQL operations, resulting in a highly scalable solution for relational data processing. You can use the built-in serverless pool for cost-effective analysis and processing of file data in the data lake, and use dedicated SQL pools to create relational data warehouses for enterprise data modeling and reporting.
 
-![alt text](synapse-sql-1.png)
+![alt text](../img/synapse-sql-1.png)
 Here you can see how to open big data format with SQL (OPENROWSET)
 
 ### Processing and analyzing data with Apache Spark
@@ -46,7 +46,7 @@ Apache Spark is an open-source platform for big data analytics. Spark performs d
 
 In Synapse, you can create one or more Spark pools and use interactive *notebooks* to combine code and notes as you build solutions for data analytics, machine learning, and data visualization. 
 
-![alt text](synapse-spark-1.png)
+![alt text](../img/synapse-spark-1.png)
 
 ### Exploring data with Data Explorer
 Data Explorer is a data processing engine in Synapse that is based on the same service.
