@@ -11,3 +11,4 @@ This document/certificate assumes some existing knowledge about Data warehousing
 - [Chapter 4 - Serverless SQL pools - Query files in a data lake](chapters/chapter4-serverless_sql_pools_query.md)
 - [Chapter 5 - Serverless SQL pools - Transform data in a data lake](chapters/chapter5-serverless_sql_pools_transform.md)
 - [Chapter 6 - Create a lake database in Azure Synapse Analytics](chapters/chapter6-lake_database_in_azure_synapse.md)
+- [Chapter 7 - Analyze data with Apache Spark in Azure Synapse Analytics](chapters/chapter7-apache_spark_in_azure_synapse.md)
