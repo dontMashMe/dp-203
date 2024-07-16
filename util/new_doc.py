@@ -1,9 +1,12 @@
 import sys
 import os
+import re
 
 root_path = "../chapters"
 dir_list = os.listdir(root_path)
-latest_chapter = str(int(dir_list[-1].split("-")[0][-1]) + 1 )
+
+chapter_numbers = [int(re.search(r"(\d+)", filename).group(1)) for filename in dir_list]
+latest_chapter = max(chapter_numbers) + 1
 
 final_file_name = f"chapter{latest_chapter}-{'_'.join(sys.argv[1:])}".lower()
 #print(final_file_name)
