@@ -14,3 +14,4 @@ This document/certificate assumes some existing knowledge about Data warehousing
 - [Chapter 7 - Analyze data with Apache Spark in Azure Synapse Analytics](chapters/chapter7-apache_spark_in_azure_synapse.md)
 - [Chapter 8 - Transform data with Spark in Azure Synapse Analytics](chapters/chapter8-transform_data_with_spark_in_azure_synapse_analytics.md)
 - [Chapter 9 - Use Delta Lake in Azure Synapse Analytics](chapters/chapter9-use_delta_lake_in_azure_synapse_analytics.md)
+- [Chapter 10 - Analyze data in a relational data warehouse](chapters/chapter10-analyze_data_in_a_relational_data_warehouse.md)
